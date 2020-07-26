@@ -54,7 +54,6 @@ function buildNav() {
     for (let i = 0; i < sectionCount; i++) {
         anchor = document.createElement('a');
         j = i + 1;
-        anchor.href = '#section' + j;
         anchor.id = 'button' + j;
         sectionList[i] = document.createTextNode(`Section ${i+1}`);
         anchor.appendChild(sectionList[i]);
@@ -62,6 +61,7 @@ function buildNav() {
     }
 }
 
+buildNav();
 
 
 
@@ -85,8 +85,14 @@ window.addEventListener('scroll', function(event) {
     }
 }, false);
 
-// Build menu 
-buildNav();
+
 // Scroll to section on link click
+const anchors = document.getElementsByTagName('a')
+for (let i = 0; i < allSections.length; i++) {
+    let element = allSections[i];
+    let anchor = anchors[i];
+    const top = element.getBoundingClientRect().top + window.pageYOffset
+    anchor.addEventListener('click', () => window.scroll({ top, behavior: 'smooth' }))
+}
 
 // Set sections as active
