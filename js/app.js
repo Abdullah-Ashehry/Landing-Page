@@ -92,7 +92,11 @@ for (let i = 0; i < allSections.length; i++) {
     let element = allSections[i];
     let anchor = anchors[i];
     const top = element.getBoundingClientRect().top + window.pageYOffset
-    anchor.addEventListener('click', () => window.scroll({ top, behavior: 'smooth' }))
+    anchor.addEventListener('click', function(event) {
+        event.preventDefault();
+        window.scroll({ top, behavior: 'smooth' })
+    });
 }
+
 
 // Set sections as active
