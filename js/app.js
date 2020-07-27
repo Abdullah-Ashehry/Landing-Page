@@ -18,7 +18,7 @@
  * 
  */
 
-let navBar = document.querySelector('.topnav');
+let navBar = document.querySelector('#navbar__list');
 let allSections = document.querySelectorAll('section');
 let allHref = document.querySelectorAll('a')
 let anchor = null;
@@ -52,7 +52,7 @@ function isInViewport(elem) {
 
 function buildNav() {
     for (let i = 0; i < sectionCount; i++) {
-        anchor = document.createElement('a');
+        anchor = document.createElement('li');
         j = i + 1;
         anchor.id = 'button' + j;
         sectionList[i] = document.createTextNode(`Section ${i+1}`);
@@ -62,10 +62,6 @@ function buildNav() {
 }
 
 buildNav();
-
-
-
-
 
 
 /**
@@ -87,16 +83,15 @@ window.addEventListener('scroll', function(event) {
 
 
 // Scroll to section on link click
-const anchors = document.getElementsByTagName('a')
+const anchors = document.getElementsByTagName('li');
 for (let i = 0; i < allSections.length; i++) {
     let element = allSections[i];
     let anchor = anchors[i];
-    const top = element.getBoundingClientRect().top + window.pageYOffset
+    /* Delete the top variable because we won't need it here */
+    // const top = element.getBoundingClientRect().top + window.pageYOffset;
     anchor.addEventListener('click', function(event) {
         event.preventDefault();
-        window.scroll({ top, behavior: 'smooth' })
+        // this will scroll the element to the view.
+        element.scrollIntoView({ behavior: 'smooth' });
     });
 }
-
-
-// Set sections as active
