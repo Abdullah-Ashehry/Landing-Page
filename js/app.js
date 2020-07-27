@@ -73,7 +73,7 @@ buildNav();
 window.addEventListener('scroll', function(event) {
     for (let i = 0; i < sectionCount; i++) {
         elem = allSections.item(i);
-        if (isInViewport(elem)) {
+        if (isInViewport(elem.getElementsByClassName("landing__container")[0].getElementsByTagName("h2")[0])) {
             elem.classList.add('your-active-class');
         } else {
             elem.classList.remove('your-active-class')
